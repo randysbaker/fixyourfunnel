@@ -1,0 +1,24 @@
+##########################################################
+############### TWEAK THE ENVIRONMENT ####################
+##########################################################
+<IfModule mod_headers.c>
+  <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|font.css|css)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+</IfModule>
+
+##########################################################
+################ ENABLE MOD_REWRITE ######################
+##########################################################
+RewriteEngine On
+RewriteRule ^(include|data|admin|css) - [L]
+
+##########################################################
+################ MOD_REWRITE RULES #######################
+##########################################################
+RewriteRule ^add-image(/)?$ add_image.php [QSA,NS,L]
+RewriteRule ^edit-image/(.*)/(.*)/$ edit_image.php?image_id=$1 [QSA,NS,L]
+RewriteRule ^gallery(/)?$ gallery.php [QSA,NS,L]
+RewriteRule ^login(/)?$ login.php [NS,L]
+RewriteRule ^logoff(/)?$ logoff.php [NS,L]
+RewriteRule ^view-image/(.*)/(.*)/$ view_image.php?image_id=$1 [QSA,NS,L]
